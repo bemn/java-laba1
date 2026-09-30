@@ -2,6 +2,51 @@ import java.util.Scanner;
 import java.lang.Math;
 
 class Main {
+    Scanner sc = new Scanner(System.in);
+
+    public int read_Int() {
+        while (true) {
+            try {
+                return Integer.parseInt(sc.next());
+            } catch (NumberFormatException e) {
+                System.out.println("Error: not an integer.");
+            }
+        }
+    }
+    
+    public long read_Long() {
+        while (true) {
+            try {
+                return Long.parseLong(sc.next());
+            } catch (NumberFormatException e) {
+                System.out.println("Error: not a long integer.");
+            }
+        }
+    }
+
+    public char read_Char(){
+        while (sc.hasNext()) {
+            String first = sc.next();
+            if (first.length() == 1) {
+                return first.charAt(0);
+            } else {
+                System.out.println("Error: enter a single character");
+            }
+        }
+        return ' ';
+    }
+
+    public char read_numChar(){
+        while (sc.hasNext()) {
+            String first = sc.next();
+            if (first.length() == 1 && Character.isDigit(first.charAt(0))) {
+                return first.charAt(0);
+            } else {
+                System.out.println("Error: enter a single digit character");
+            }
+        }
+        return ' ';
+    }
 
     public int sumLastNums(int x){
         return x%10 + (x%100 - x%10)/10;
@@ -197,30 +242,29 @@ class Main {
 
     public static void main(String[] args){
         Main obj = new Main();
-        Scanner sc = new Scanner(System.in);
 
         System.out.print("==First Task==\n");
         System.out.print("1)enter a whole number: ");
-        int a = sc.nextInt();
+        int a = obj.read_Int();
         System.out.println(obj.sumLastNums(a));
 
         System.out.print("2)enter 0-9 number: ");
-        char b = sc.next().charAt(0);    
+        char b = obj.read_numChar();    
         System.out.println(obj.charToNum(b));
 
         System.out.print("3)enter A-Z character: ");
-        char c = sc.next().charAt(0);    
+        char c = obj.read_Char();    
         System.out.println(obj.isUpperCase(c));
 
-        System.out.print("4)enter two whole numbers: ");
-        int d = sc.nextInt();    
-        int e = sc.nextInt();   
+        System.out.print("4)enter two whole numbers:\n");
+        int d = obj.read_Int();    
+        int e = obj.read_Int();
         System.out.println(obj.isDivisor(d,e));
 
-        System.out.print("5)enter 5 numbers: ");
-        int result0 = sc.nextInt();
+        System.out.print("5)enter 5 numbers:\n");
+        int result0 = obj.read_Int();
         for (int i = 0; i < 4; i++) {
-            int tmp = sc.nextInt();
+            int tmp = obj.read_Int();
             System.out.println(result0 + " + " + tmp + " this is " + obj.lastNumSum(result0, tmp));
             result0 = obj.lastNumSum(result0, tmp);
         }
@@ -228,65 +272,65 @@ class Main {
 
         System.out.print("==Second Task==\n");
         System.out.print("6)enter a number:\nx=");
-        int f = sc.nextInt();
+        int f = obj.read_Int();
         System.out.println("Result: " + obj.abs(f));
 
         System.out.print("7)enter two numbers:\nx=");
-        int g = sc.nextInt();
+        int g = obj.read_Int();
         System.out.print("y=");
-        int h = sc.nextInt();
+        int h = obj.read_Int();
         System.out.println("Result: " + obj.safeDiv(g,h));
 
         System.out.print("8)enter two numbers:\nx=");
-        int I = sc.nextInt();
+        int I = obj.read_Int();
         System.out.print("y=");
-        int j = sc.nextInt();
+        int j = obj.read_Int();
         System.out.println("Result: " + obj.sum2(I,j));
 
         System.out.print("9)enter your age:\nx=");
-        int k = sc.nextInt();
+        int k = obj.read_Int();
         System.out.println("Result: \"" + obj.age(k) + "\"");
         
         System.out.print("10)enter a number between 1 and 7 for the day of the week:\nx=");
-        int l = sc.nextInt();
+        int l = obj.read_Int();
         System.out.println("Result: \"" + obj.day(l) + "\"");
         
         System.out.print("==Third Task==\n");
         System.out.print("11)enter a range of even numbers:\nx=");
-        int m = sc.nextInt();
+        int m = obj.read_Int();
         System.out.println("Result: \"" + obj.chet(m) + "\"");
 
         System.out.print("12)enter a number:\nx=");
-        long n = sc.nextLong();
+        long n = obj.read_Long();
         System.out.println("Result:" + obj.numLen(n));
 
         System.out.print("13)enter a number:\nx=");
-        int o = sc.nextInt();
+        int o = obj.read_Int();
         System.out.println("Result:\n");
         obj.square(o);
 
         System.out.print("14)enter a number:\nx=");
-        int p = sc.nextInt();
+        int p = obj.read_Int();
         System.out.println("Result:");
         obj.leftTriangle(p);
 
         System.out.print("15)enter a number:\nx=");
-        int q = sc.nextInt();
+        int q = obj.read_Int();
         System.out.println("Result:");
         obj.rightTriangle(q);
 
         System.out.print("==Fourth Task==\n");
         System.out.print("16)enter the size of the array: ");
-        int N = sc.nextInt();
+        int N = obj.read_Int();
         System.out.print("enter the elements of the array: ");
         int[] arr = new int[N];
         for (int i = 0; i < arr.length; i++) {
-            arr[i] = sc.nextInt();
+            arr[i] = obj.read_Int();
         }
         System.out.print("Enter the number to add: ");
-        int x = sc.nextInt();
+        int x = obj.read_Int();
         System.out.print("Enter the position to add: ");
-        int pos = sc.nextInt();
+        int pos = obj.read_Int();
         int[] newArr = obj.add(arr, x, pos);
         System.out.print("Result: ");
         for (int i = 0; i < newArr.length; i++) {
@@ -294,21 +338,21 @@ class Main {
         }
 
         System.out.print("17)enter the size of the first array: ");
-        int M = sc.nextInt();
+        int M = obj.read_Int();
         System.out.print("enter the elements of the first array: ");
         int[] arr2 = new int[M];
         for (int i = 0; i < arr2.length; i++) {
-            arr2[i] = sc.nextInt();
+            arr2[i] = obj.read_Int();
         }
         System.out.print("enter the size of the second array: ");
-        int P = sc.nextInt();
+        int P = obj.read_Int();
         System.out.print("enter the elements of the second array: ");
         int[] arr3 = new int[P];
         for (int i = 0; i < arr3.length; i++) {
-            arr3[i] = sc.nextInt();
+            arr3[i] = obj.read_Int();
         }
         System.out.print("enter the position to add: ");
-        int pos2 = sc.nextInt();
+        int pos2 = obj.read_Int();
         int[] newArr2 = obj.addArr(arr2, arr3, pos2);
         System.out.print("Result: ");
         for (int i = 0; i < newArr2.length; i++) {
@@ -316,11 +360,11 @@ class Main {
         }
 
         System.out.print("18)enter the size of the array: ");
-        int R = sc.nextInt();
+        int R = obj.read_Int();
         System.out.print("enter the elements of the array: ");
         int[] arr4 = new int[R];
         for (int i = 0; i < arr4.length; i++) {
-            arr4[i] = sc.nextInt();
+            arr4[i] = obj.read_Int();
         }
         obj.reverse(arr4);
         System.out.print("Result: ");
@@ -329,14 +373,14 @@ class Main {
         }
 
         System.out.print("19)enter the size of the array: ");
-        int S = sc.nextInt();
+        int S = obj.read_Int();
         System.out.print("enter the elements of the array: ");
         int[] arr5 = new int[S];
         for (int i = 0; i < arr5.length; i++) {
-            arr5[i] = sc.nextInt();
+            arr5[i] = obj.read_Int();
         }
         System.out.print("enter the number to find: ");
-        int y = sc.nextInt();
+        int y = obj.read_Int();
         int[] result = obj.findAll(arr5, y);
         System.out.print("Result: ");
         for (int i = 0; i < result.length; i++) {
@@ -344,11 +388,11 @@ class Main {
         }
 
         System.out.print("20)enter the size of the array: ");
-        int T = sc.nextInt();
+        int T = obj.read_Int();
         System.out.print("enter the elements of the array: ");
         int[] arr6 = new int[T];
         for (int i = 0; i < arr6.length; i++) {
-            arr6[i] = sc.nextInt();
+            arr6[i] = obj.read_Int();
         }
         int[] result2 = obj.deleteNegative(arr6);
         System.out.print("Result: ");
@@ -356,6 +400,6 @@ class Main {
             System.out.print(result2[i] + " ");
         }
         System.out.print("==The end==");
-        sc.close();
+        
     }
 }
